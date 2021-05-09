@@ -1,0 +1,51 @@
+package com.viki.SpringWebProject.controller;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.viki.SpringWebProject.model.Employee;
+import com.viki.SpringWebProject.service.EmployeeService;
+
+@org.springframework.web.bind.annotation.RestController
+public class RestController {
+	
+	@Autowired
+	private EmployeeService service;
+	
+	@PostMapping("/save-employee")
+	@Transactional
+	@CrossOrigin
+	public String registerEmployee(@RequestBody Employee employee)
+	{
+		service.saveMyEmployee(employee);
+		return "hello "+employee.getFirstname()+ " your registration is successfull";
+	}
+	
+	@GetMapping("/all-employee")
+	@CrossOrigin
+	public Iterable<Employee> showAllEmployee()
+	{
+		return service.showAllEmployee();
+	}
+	
+	@GetMapping("/delete/{username}")
+	@Transactional
+	public Iterable<Employee> deleteEmployee(@PathVariable String username)
+	{
+		return service.deleteByUsername(username);
+	}
+	
+	@GetMapping("/search/{username}")
+	@CrossOrigin
+	public Employee searchEmployee(@PathVariable String username)
+	{
+		return service.findByUsername(username);
+	}
+
+}  
