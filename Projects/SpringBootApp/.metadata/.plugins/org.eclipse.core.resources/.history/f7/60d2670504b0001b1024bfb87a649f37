@@ -1,5 +1,0 @@
-package com.viki.SpringWebProject.repository;
-
-public interface EmployeeRepository {
-
-}
