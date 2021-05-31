@@ -1,0 +1,13 @@
+body{
+    background: -webkit-linear-gradient(left, #b3b0e6, #baec6a);
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+  }
+  

@@ -1,0 +1,42 @@
+
+<h2 align="center"  style="font-family: fangsong; ">{{title}}</h2>
+
+<div class="row card-deck text-center">
+
+  <div *ngFor="let productInfo of page?.content" class="col-lg-4 ">
+
+    <div class="card mb-4"  >
+
+      <img height="50%" class="card-img-top" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">
+
+      <div class="card-body">
+
+        <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-success">{{productInfo.productName}}</span> &nbsp; <span class="float-end price-hp">{{productInfo.productPrice | currency :'INR'}}</span> </div>
+
+        <h6 class="card-title">{{productInfo.productDescription}}</h6>
+
+        <p class="card-text"><strong>Stock: </strong>{{productInfo.productStock}}</p>
+
+        <div class="text-center my-4"> 
+
+        <a routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0; else offBlock"
+
+           class="btn btn-warning"
+
+        >Get It!</a>
+
+        <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+
+      </div>
+
+    </div>
+
+      </div>
+
+  </div>
+
+</div>
+
+<app-pagination  [currentPage]="page" ></app-pagination>
+
+
